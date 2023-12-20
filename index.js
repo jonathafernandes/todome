@@ -1,5 +1,5 @@
-import addBtnCompleteTask from "./components/completeTask.js";
-import addBtnDeleteTask from "./components/deleteTask.js";
+import addBtnCompleteTask from "./src/components/completeTask.js";
+import addBtnDeleteTask from "./src/components/deleteTask.js";
 
 const newTask = (event) => {
     event.preventDefault();
@@ -9,6 +9,11 @@ const newTask = (event) => {
     const list = document.querySelector('[data-list]');
     const task = document.createElement('li'); // Criando elemento HTML
     task.classList.add('task'); // Adicionado uma classe
+
+    if (valueInput === "") {
+        alert("Digite uma tarefa!");
+        return;
+    }
 
     const content = `<p class="content">${valueInput}</p>`;
 
