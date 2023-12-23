@@ -81,7 +81,6 @@ body {
   background-color: #f1f1f1;
   border-radius: 5px;
   display: flex;
-  /* justify-content: space-between; */
   margin-bottom: 0.5rem;
   padding: 1rem 3rem;
 }
@@ -112,19 +111,6 @@ body {
 
 .task.done .check-button {
   background-color: #46494C;
-}
-
-.check-icon {
-  display: block;
-  padding: 1px;
-  width: 10px;
-  height: 10px;
-  background-color: transparent;
-  border-radius: 50%;
-}
-
-.task.done .check-icon {
-  background-color: #0B2027;
 }
 
 .content {
