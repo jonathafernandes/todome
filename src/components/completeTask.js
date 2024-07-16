@@ -3,8 +3,6 @@ const addBtnCompleteTask = () => {
     btnCompleteTask.type = 'checkbox';
     btnCompleteTask.classList.add('check-button');
 
-    // btnCompleteTask.innerHTML = 'concluir';
-
     btnCompleteTask.addEventListener('click', completeTask);
 
     return btnCompleteTask; // O botão precisa ser retornado para ser usado na função que cria tarefa
