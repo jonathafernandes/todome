@@ -1,70 +1,76 @@
 body {
-  background: rgba(170, 163, 156, 0.1);
-  font-family: 'Victor Mono', monospace;
+  font-family: "Roboto", sans-serif;
 
   margin: 0;
 }
 
 .app {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100vw;
+  width: 50vw;
+  margin: 0 auto;
   min-height: 100vh;
 }
 
-.todo-list {
-  background: #fdfdfd;
+header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 
-  border: 1px solid #161616;
+}
+
+header .logo {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+}
+
+header .logo img {
+  width: 25px;
+}
+
+header .logo .app-name {
+  font-weight: 500;
+}
+
+header .logo .slogan {
+  font-size: 0.8rem;
+  color: #888888;
+}
+
+.todo-list {
+  border: 1px solid #f1f1f1;
   border-radius: 5px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+
   padding: 3rem;
-  margin: 10px;
   min-width: 400px;
   min-height: 300px;
 }
 
-.title {
-  font-family: 'Jost', sans-serif;
-  font-size: 1.8rem;
-  color: #9722bb;
-  text-align: center;
-}
-
-.subtitle {
-  text-align: center;
-  font-size: 0.755rem;
-}
-
 .form {
   display: flex;
-  margin-top: 50px;
   justify-content: center;
 }
 
 .form-input {
-  background-color: #f1f1f1;
-  border: 1px solid #161616;
-
-  border-radius: 5px;
-
-  height: 10px;
-  padding: 0.75rem;
-  font-size: 0.75rem;
-  font-family: 'Victor Mono', monospace;
+  border: 1px solid #dfdfdf;
+  font-size: 0.85rem;
+  font-family: "Roboto", sans-serif;
   outline: none;
+
+  padding: 0.75rem;
+  width: 100%;
 }
 
 .form-button {
-  border: 1px solid #9722bb;
-  border-radius: 5px;
-  color: #F6F1D1;
+  border: 1px solid #dfdfdf;
   cursor: pointer;
-  font-family: 'Victor Mono', monospace;
   font-size: 1.5rem;
 
   margin-left: 0.55rem;
-  width: 38px;
 }
 
 .form-button:hover {
@@ -78,39 +84,32 @@ body {
 }
 
 .task {
-  background-color: #f1f1f1;
-  border-radius: 5px;
   display: flex;
-  margin-bottom: 0.5rem;
-  padding: 1rem 3rem;
+  align-items: center;
+  padding: 1rem;
+
+  border-bottom: 1px solid #f1f1f1;
 }
 
 .check-button,
 .delete-button {
-  background-color: #F6F1D1;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  background: none;
   outline: none;
-  border-radius: 2px;
-  border: 1px solid;
+  border: none;
   cursor: pointer;
-  font-family: 'Victor Mono', monospace;
   transition: 100ms;
 }
 
 .check-button {
-  margin: 0 10px 0 50px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
 }
 
-.check-button:hover {
-  background-color: #1cca1c;
+.delete-button {
+  font-size: 1rem;
 }
 
 .delete-button:hover {
-  background-color: #ca3f1c;
-}
-
-.task.done .check-button {
-  background-color: #46494C;
+  background-color: #c08779;
 }
 
 .content {
@@ -121,21 +120,34 @@ body {
   text-decoration: line-through;
 }
 
-@media (max-width: 520px) {
-  .todo-list {
-    min-width: 50px;
+@media (max-width: 620px) {
+  .app {
+    width: 80vw;
   }
 
-  .task {
+  header {
     flex-direction: column;
     align-items: center;
   }
 
-  .check-button {
+  .todo-list {
+    min-width: 90%;
+  }
+
+  /* .todo-list {
+    min-width: 50px;
+  } */
+
+  /* .task {
+    flex-direction: column;
+    align-items: center;
+  } */
+
+  /* .check-button {
     margin: 10px 0;
   }
 
   .content {
     text-align: center;
-  }
+  } */
 }

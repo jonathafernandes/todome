@@ -2,7 +2,7 @@ const addBtnDeleteTask = () => {
     const btnDeleteTask = document.createElement('button');
     btnDeleteTask.classList.add('delete-button');
 
-    btnDeleteTask.innerText = 'excluir';
+    btnDeleteTask.innerText = '🗑️';
     btnDeleteTask.addEventListener('click', deleteTask);
 
     return btnDeleteTask; // O botão precisa ser retornado para ser usado na função que cria tarefa

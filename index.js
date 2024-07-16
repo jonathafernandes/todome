@@ -20,7 +20,7 @@ const newTask = (event) => {
     task.innerHTML = content;
 
     list.appendChild(task); // Atribuindo o elemento criado a um elemento pai
-    task.appendChild(addBtnCompleteTask());
+    task.insertBefore(addBtnCompleteTask(), task.firstChild); // Adicionando o botão antes do conteúdo da task
     task.appendChild(addBtnDeleteTask());
     input.value = ""; // Mudando o valor do input
 }

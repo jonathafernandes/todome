@@ -1,8 +1,9 @@
 const addBtnCompleteTask = () => {
-    const btnCompleteTask = document.createElement('button');
+    const btnCompleteTask = document.createElement('input');
+    btnCompleteTask.type = 'checkbox';
     btnCompleteTask.classList.add('check-button');
 
-    btnCompleteTask.innerHTML = 'concluir';
+    // btnCompleteTask.innerHTML = 'concluir';
 
     btnCompleteTask.addEventListener('click', completeTask);
 
