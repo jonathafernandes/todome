@@ -123,6 +123,8 @@ header .logo .slogan {
 @media (max-width: 620px) {
   .app {
     width: 80vw;
+    min-height: auto;
+    margin: 3rem auto;
   }
 
   header {
@@ -133,21 +135,4 @@ header .logo .slogan {
   .todo-list {
     min-width: 90%;
   }
-
-  /* .todo-list {
-    min-width: 50px;
-  } */
-
-  /* .task {
-    flex-direction: column;
-    align-items: center;
-  } */
-
-  /* .check-button {
-    margin: 10px 0;
-  }
-
-  .content {
-    text-align: center;
-  } */
 }
