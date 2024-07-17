@@ -9,13 +9,17 @@ const addBtnDeleteTask = () => {
 }
 
 const deleteTask = (event) => {
-    const btnDeleteTask = event.target; // O `target` serve para verificar em qual elemento foi clicado
+    let targetElement = event.target;
 
-    const taskDelete = btnDeleteTask.parentElement;
+    // Loop para subir na árvore do DOM até encontrar o elemento da tarefa
+    while (!targetElement.classList.contains('task') && targetElement.parentElement) {
+        targetElement = targetElement.parentElement;
+    }
 
-    taskDelete.remove();
-
-    return btnDeleteTask;
+    // Se o elemento da tarefa foi encontrado, remova-o.
+    if (targetElement.classList.contains('task')) {
+        targetElement.remove();
+    }
 }
 
 export default addBtnDeleteTask;
