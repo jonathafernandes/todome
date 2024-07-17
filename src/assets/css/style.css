@@ -9,6 +9,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 50vw;
+  max-width: 600px;
   margin: 3rem auto;
 }
 
@@ -54,6 +55,7 @@ header .logo .slogan {
 
 .form-input {
   border: 1px solid #dfdfdf;
+  border-radius: 5px;
   font-size: 0.85rem;
   font-family: "Roboto", sans-serif;
   outline: none;
@@ -62,14 +64,20 @@ header .logo .slogan {
 }
 
 .form-button {
+  background: #fff;
   border: 1px solid #dfdfdf;
+  border-radius: 5px;
   cursor: pointer;
-  font-size: 1.5rem;
+  font-size: 1rem;
+
   margin-left: 0.55rem;
+  width: 38px;
+
+  transition: 200ms;
 }
 
 .form-button:hover {
-  background: rgba(170, 163, 156, 0.1);
+  background: #dfdfdf;
 }
 
 .list {
@@ -101,11 +109,13 @@ header .logo .slogan {
 }
 
 .delete-button {
+  font-size: 1.2rem;
+
   margin-left: auto; 
 }
 
 .delete-button:hover {
-  background-color: #c08779;
+  color: #bd2a05;
 }
 
 .content {
@@ -118,6 +128,10 @@ header .logo .slogan {
 }
 
 @media (max-width: 620px) {
+  .app {
+    width: 70vw;
+  }
+
   header {
     flex-direction: column;
     align-items: center;
