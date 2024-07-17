@@ -1,6 +1,7 @@
 header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   width: 100%;
 }
 
@@ -27,13 +28,13 @@ header .logo .slogan {
   border: 1px solid #f1f1f1;
   border-radius: 5px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-  padding: 3rem;
-  min-width: 400px;
+  min-width: 600px;
   min-height: 300px;
   width: 100%;
 }
 
 .form {
+  margin: 3rem 3rem 0 3rem;
   display: flex;
   justify-content: center;
 }
@@ -73,7 +74,7 @@ header .logo .slogan {
 .task {
   display: flex;
   align-items: center;
-  padding: 1rem;
+  padding: 1rem 3rem;
   border-bottom: 1px solid #f1f1f1;
   position: relative;
 }
