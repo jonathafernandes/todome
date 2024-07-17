@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/svg" href="/src/assets/images/logoipsum-223.svg" />
-  <link rel="stylesheet" href="./src/assets/css/style.css">
+  <link rel="stylesheet" href="./src/assets/css/home.css">
+  <link rel="stylesheet" href="./src/assets/css/global.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -24,18 +25,32 @@
       </div>
       <h1 class="title">Tarefas</h1>
     </header>
-    <div class="todo-list">
-
+    <main>
+      <div class="todo-list">
+        
       <form class="form" action="">
         <input class="form-input" data-form-input type="text">
         <button class="form-button" data-form-button>
           <i class="ph ph-plus"></i>
         </button>
       </form>
-
+      
       <ul class="list" data-list></ul>
+
     </div>
-    <script type="module" src="./index.js"></script>
+  </main>
+  <footer>
+    <p><span>Todome </span>2024 &copy; Todos os direitos reservados</p>
+    <ul>
+      <li>
+        <a href="#">Ajuda</a>
+      </li>
+      <li>
+        <a href="#">Sobre</a>
+      </li>
+    </ul>
+  </footer>
+  <script type="module" src="./index.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,38 @@
+body {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50vw;
+    max-width: 600px;
+    margin: 3rem auto;
+}
+
+@media (max-width: 620px) {
+    .app {
+      width: 70vw;
+    }
+  
+    header {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .todo-list {
+      min-width: 90%;
+    }
+  }
