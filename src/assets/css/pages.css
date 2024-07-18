@@ -3,6 +3,7 @@ main {
     flex-direction: column;
     gap: 5rem;
     align-items: center;
+    margin: 2rem 1rem;
 }
 
 main p {
