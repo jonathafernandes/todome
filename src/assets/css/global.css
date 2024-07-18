@@ -22,6 +22,58 @@ a {
     margin: 3rem auto;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+header .logo {
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+}
+
+header .logo img {
+    width: 25px;
+}
+
+header .logo .app-name {
+    font-weight: 500;
+}
+
+header .logo .slogan {
+    font-size: 0.8rem;
+    color: #888888;
+}
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  
+    border-top: 1px solid #f1f1f1;
+    font-size: 0.8rem;
+    color: #888888;
+}
+
+footer span {
+    font-weight: 700;
+}
+
+footer ul {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+footer a:hover {
+    color: #000;
+}
+
 @media (max-width: 620px) {
     .app {
       width: 70vw;
@@ -35,4 +87,4 @@ a {
     .todo-list {
       min-width: 90%;
     }
-  }
+} 

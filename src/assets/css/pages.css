@@ -1,0 +1,31 @@
+main {
+    display: flex;
+    flex-direction: column;
+    gap: 5rem;
+    align-items: center;
+}
+
+main p {
+    line-height: 25px;
+}
+
+main p a {
+    color: #ff7917;
+}
+
+main p a:hover {
+    text-decoration: underline;
+}
+
+main ul li i {
+    font-size: 1rem;
+}
+
+main i {
+    font-size: 2rem;
+    color: #212121;
+}
+
+main i:hover {
+    color: #424242;
+}
