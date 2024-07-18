@@ -2,7 +2,7 @@
 
 <p>Gerenciar tarefas.</p>
 
-<img src="./src/assets/images/Screenshot 2024-07-16 at 20-34-11 Todome.png" width="90%">
+<img src="./src/assets/images/Screenshot 2024-07-18 at 20-31-03 Todome.png" width="90%">
 
 <br>
 
