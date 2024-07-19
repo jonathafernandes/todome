@@ -8,6 +8,12 @@
 
 _Desenvolvido com_ **HTML**, **CSS** _e_ **JavaScript**.
 
+**Visite**:
+<br>
+▶️ https://mytodome.vercel.app/
+
 ---
-### Visite
-▶️ https://jonathafernandes.github.io/todome/
+
+<h3>Para contribuir</h3>
+
+Clone o repositório com `git clone [repo]`, abra a página `index.html` direto no navegador para visualizar o projeto localmente, se preferir, pode usar a extensão _Live Sever_ para criar um servidor local.
