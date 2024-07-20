@@ -1,17 +1,23 @@
 import addBtnCompleteTask from "./src/components/completeTask.js";
 import addBtnDeleteTask from "./src/components/deleteTask.js";
+import { currentDate, tomorrowDate } from "./src/utils/date.js";
 
 function loadTasks() {
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  tasks.forEach(task => {
-    createTaskElement(task);
+  tasks.forEach((task, index) => {
+    createTaskElement(task, index);
   });
 }
 
-function createTaskElement(task) {
+function createTaskElement(task, index) {
   const list = document.querySelector('[data-list]');
   const taskElement = document.createElement('li');
+  const inputDate = document.createElement('input');
+
   taskElement.classList.add('task');
+  inputDate.value = task.date;
+  inputDate.type = 'date';
+
   if (task.completed) {
     taskElement.classList.add('done');
   }
@@ -25,9 +31,55 @@ function createTaskElement(task) {
   taskElement.appendChild(btnCompleteTask);
 
   taskElement.appendChild(content);
+  taskElement.appendChild(inputDate);
+  
+  const todayText = document.createElement('span');
+  todayText.textContent = 'hoje';
+  todayText.classList.add('today');
+
+  const tomorrowText = document.createElement('span');
+  tomorrowText.textContent = 'amanhã';
+  tomorrowText.classList.add('tomorrow');
+
+  if (task.date === currentDate()) {
+    taskElement.appendChild(todayText);
+  } else if (task.date === tomorrowDate()) {
+    taskElement.appendChild(tomorrowText);
+  }
+
   taskElement.appendChild(addBtnDeleteTask());
 
+  inputDate.addEventListener('change', () => {
+    updateTaskDate(index, inputDate.value, taskElement, todayText, tomorrowText);
+  });
+
   list.appendChild(taskElement);
+}
+
+function updateTaskDate(index, newDate, taskElement, todayText, tomorrowText) {
+  const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  tasks[index].date = newDate;
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+
+  if (newDate === currentDate()) {
+    if (!taskElement.contains(todayText)) {
+      taskElement.insertBefore(todayText, taskElement.lastChild);
+    }
+  } else {
+    if (taskElement.contains(todayText)) {
+      taskElement.removeChild(todayText);
+    }
+  }
+
+  if (newDate === tomorrowDate()) {
+    if (!taskElement.contains(tomorrowText)) {
+      taskElement.insertBefore(tomorrowText, taskElement.lastChild);
+    }
+  } else {
+    if (taskElement.contains(tomorrowText)) {
+      taskElement.removeChild(tomorrowText);
+    }
+  }
 }
 
 const newTask = (event) => {
@@ -35,6 +87,7 @@ const newTask = (event) => {
 
   const input = document.querySelector('[data-form-input]');
   const valueInput = input.value;
+  const dateInput = document.querySelector('[data-form-date]');
 
   if (valueInput === "") {
     alert("Digite uma tarefa! 🚫");
@@ -43,20 +96,21 @@ const newTask = (event) => {
 
   const task = {
     value: valueInput,
-    completed: false
+    completed: false,
+    date: dateInput.value
   };
-
-  createTaskElement(task);
 
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   tasks.push(task);
   localStorage.setItem('tasks', JSON.stringify(tasks));
 
+  createTaskElement(task, tasks.length - 1);
+
   input.value = "";
+  dateInput.value = "";
 };
 
 document.addEventListener('DOMContentLoaded', loadTasks);
 
 const btnNewTask = document.querySelector('[data-form-button]');
 btnNewTask.addEventListener('click', newTask);
-  
