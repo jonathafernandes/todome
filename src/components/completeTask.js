@@ -1,19 +1,29 @@
-const addBtnCompleteTask = () => {
+const addBtnCompleteTask = (task) => {
     const btnCompleteTask = document.createElement('input');
     btnCompleteTask.type = 'checkbox';
     btnCompleteTask.classList.add('check-button');
 
-    btnCompleteTask.addEventListener('click', completeTask);
+    btnCompleteTask.addEventListener('click', (event) => completeTask(event, task));
 
-    return btnCompleteTask; // O botão precisa ser retornado para ser usado na função que cria tarefa
+    return btnCompleteTask;
 }
 
 const completeTask = (event) => {
-    const btnCompleteTask = event.target; // O `target` serve para verificar em qual elemento foi clicado
+    const btnCompleteTask = event.target;
 
-    const taskComplete = btnCompleteTask.parentElement;
+    const taskElement = btnCompleteTask.parentElement;
+    taskElement.classList.toggle('done');
 
-    taskComplete.classList.toggle('done');
+    const taskContent = taskElement.querySelector('.content').textContent;
+
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    const updatedTasks = tasks.map(t => {
+        if (t.value === taskContent) {
+            t.completed = btnCompleteTask.checked;
+        }
+        return t;
+    });
+    localStorage.setItem('tasks', JSON.stringify(updatedTasks));
 }
 
 export default addBtnCompleteTask;
