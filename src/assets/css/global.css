@@ -137,6 +137,12 @@ footer a:hover {
         margin: 0 1rem;
     }
 
+    .task {
+        align-items: start;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
     footer {
         flex-direction: column;
         align-items: center;
