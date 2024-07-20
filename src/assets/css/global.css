@@ -55,6 +55,22 @@ header .logo .slogan {
     color: #888888;
 }
 
+.today, .tomorrow {
+    border-radius: 2px;
+    font-family: monospace;
+    font-size: 0.7rem;
+  
+    padding: 0.15rem 0.3rem;
+  }
+  
+  .today {
+    background-color: #fdb592;
+  }
+  
+  .tomorrow {
+    background-color: #a0f3bb;
+  }
+
 footer {
     display: flex;
     justify-content: space-around;

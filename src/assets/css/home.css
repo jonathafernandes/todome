@@ -90,19 +90,3 @@
 
   margin-left: 0.55rem;
 }
-
-.today, .tomorrow {
-  border-radius: 2px;
-  font-family: monospace;
-  font-size: 0.7rem;
-
-  padding: 0.15rem 0.3rem;
-}
-
-.today {
-  background-color: #fdb592;
-}
-
-.tomorrow {
-  background-color: #a0f3bb;
-}
