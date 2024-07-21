@@ -13,10 +13,13 @@ function createTaskElement(task, index) {
   const list = document.querySelector('[data-list]');
   const taskElement = document.createElement('li');
   const inputDate = document.createElement('input');
+  const divider = document.createElement('div');
 
   taskElement.classList.add('task');
   inputDate.value = task.date;
   inputDate.type = 'date';
+  inputDate.classList.add('task-date');
+  divider.classList.add('divider');
 
   if (task.completed) {
     taskElement.classList.add('done');
@@ -28,9 +31,11 @@ function createTaskElement(task, index) {
 
   const btnCompleteTask = addBtnCompleteTask(task);
   btnCompleteTask.checked = task.completed;
-  taskElement.appendChild(btnCompleteTask);
 
-  taskElement.appendChild(content);
+  divider.appendChild(btnCompleteTask);
+  divider.appendChild(content);
+
+  taskElement.appendChild(divider);
   taskElement.appendChild(inputDate);
   
   const todayText = document.createElement('span');

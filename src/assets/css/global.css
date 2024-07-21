@@ -120,7 +120,7 @@ footer a:hover {
         gap: .5rem;
     }
 
-    .date {
+    .form-date {
         margin: 0;
         height: 2.7rem;
         width: 100%;
@@ -141,6 +141,14 @@ footer a:hover {
         align-items: start;
         flex-direction: column;
         padding: 1rem;
+    }
+
+    .task-date {
+        margin: 0;
+    }
+
+    .delete-button {
+        margin-left: auto;
     }
 
     footer {
