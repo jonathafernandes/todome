@@ -59,6 +59,10 @@ header .logo .slogan {
     color: #888888;
 }
 
+main {
+    margin-bottom: 5rem;
+}
+
 .today,
 .tomorrow {
     border-radius: 2px;

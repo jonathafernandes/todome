@@ -17,6 +17,7 @@ function createTaskElement(task, index) {
   taskElement.classList.add('task');
   inputDate.value = task.date;
   inputDate.type = 'date';
+  inputDate.classList.add('task-date');
 
   if (task.completed) {
     taskElement.classList.add('done');
