@@ -13,13 +13,10 @@ function createTaskElement(task, index) {
   const list = document.querySelector('[data-list]');
   const taskElement = document.createElement('li');
   const inputDate = document.createElement('input');
-  const divider = document.createElement('div');
 
   taskElement.classList.add('task');
   inputDate.value = task.date;
   inputDate.type = 'date';
-  inputDate.classList.add('task-date');
-  divider.classList.add('divider');
 
   if (task.completed) {
     taskElement.classList.add('done');
@@ -32,12 +29,14 @@ function createTaskElement(task, index) {
   const btnCompleteTask = addBtnCompleteTask(task);
   btnCompleteTask.checked = task.completed;
 
+  const divider = document.createElement('div');
+  divider.classList.add('divider');
   divider.appendChild(btnCompleteTask);
   divider.appendChild(content);
 
   taskElement.appendChild(divider);
   taskElement.appendChild(inputDate);
-  
+
   const todayText = document.createElement('span');
   todayText.textContent = 'hoje';
   todayText.classList.add('today');
@@ -119,3 +118,5 @@ document.addEventListener('DOMContentLoaded', loadTasks);
 
 const btnNewTask = document.querySelector('[data-form-button]');
 btnNewTask.addEventListener('click', newTask);
+
+export { addBtnCompleteTask, createTaskElement };
