@@ -77,6 +77,8 @@
 
 .delete-button {
   font-size: 1.2rem;
+  
+  margin-top: 0.5rem;
 }
 
 .delete-button:hover {
@@ -107,5 +109,5 @@
 }
 
 .today, .tomorrow {
-  margin: 0.5rem 0;
+  margin-top: 0.5rem;
 }
