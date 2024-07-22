@@ -2,107 +2,141 @@ import addBtnCompleteTask from "./src/components/completeTask.js";
 import addBtnDeleteTask from "./src/components/deleteTask.js";
 import { currentDate, tomorrowDate } from "./src/utils/date.js";
 
+document.addEventListener('DOMContentLoaded', loadTasks);
+
 function loadTasks() {
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-  tasks.forEach((task, index) => {
-    createTaskElement(task, index);
-  });
+  tasks.forEach((task, index) => createTaskElement(task, index));
 }
 
 function createTaskElement(task, index) {
   const list = document.querySelector('[data-list]');
   const taskElement = document.createElement('li');
-  const inputDate = document.createElement('input');
-
   taskElement.classList.add('task');
-  inputDate.value = task.date;
-  inputDate.type = 'date';
-  inputDate.classList.add('task-date');
+
+  const inputDate = createInputDate(task.date);
+  const btnCompleteTask = addBtnCompleteTask(task);
+  btnCompleteTask.checked = task.completed;
+
+  const content = createContent(task.value);
+
+  const leftContainer = createLeftContainer(btnCompleteTask, content);
+  const notes = createNotes(task.notes, index);
+  const rightContainer = createRightContainer(task, inputDate);
+
+  inputDate.addEventListener('change', () => updateTaskDate(index, inputDate.value, taskElement, rightContainer));
 
   if (task.completed) {
     taskElement.classList.add('done');
   }
 
-  const content = document.createElement('p');
-  content.classList.add('content');
-  content.textContent = task.value;
-
-  const btnCompleteTask = addBtnCompleteTask(task);
-  btnCompleteTask.checked = task.completed;
-
-  const divider = document.createElement('div');
-  divider.classList.add('divider');
-  divider.appendChild(btnCompleteTask);
-  divider.appendChild(content);
-
-  taskElement.appendChild(divider);
-  taskElement.appendChild(inputDate);
-
-  const todayText = document.createElement('span');
-  todayText.textContent = 'hoje';
-  todayText.classList.add('today');
-
-  const tomorrowText = document.createElement('span');
-  tomorrowText.textContent = 'amanhã';
-  tomorrowText.classList.add('tomorrow');
-
-  if (task.date === currentDate()) {
-    taskElement.appendChild(todayText);
-  } else if (task.date === tomorrowDate()) {
-    taskElement.appendChild(tomorrowText);
-  }
-
-  taskElement.appendChild(addBtnDeleteTask());
-
-  inputDate.addEventListener('change', () => {
-    updateTaskDate(index, inputDate.value, taskElement, todayText, tomorrowText);
-  });
-
+  taskElement.append(leftContainer, notes, rightContainer);
   list.appendChild(taskElement);
 }
 
-function updateTaskDate(index, newDate, taskElement, todayText, tomorrowText) {
+function createInputDate(value) {
+  const inputDate = document.createElement('input');
+  inputDate.type = 'date';
+  inputDate.value = value;
+  inputDate.classList.add('task-date');
+  return inputDate;
+}
+
+function createContent(value) {
+  const content = document.createElement('p');
+  content.classList.add('content');
+  content.textContent = value;
+  return content;
+}
+
+function createLeftContainer(btnCompleteTask, content) {
+  const leftContainer = document.createElement('div');
+  leftContainer.classList.add('left-container');
+  leftContainer.append(btnCompleteTask, content);
+  return leftContainer;
+}
+
+function createNotes(noteContent, index) {
+  const notes = document.createElement('textarea');
+  notes.placeholder = 'Adicione uma nota...';
+  notes.classList.add('task-notes');
+  notes.value = noteContent || '';
+
+  notes.addEventListener('input', (event) => {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks[index].notes = event.target.value;
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  });
+
+  return notes;
+}
+
+function createRightContainer(task, inputDate) {
+  const rightContainer = document.createElement('div');
+  rightContainer.classList.add('right-container');
+
+  const todayText = createTextSpan('hoje', 'today');
+  const tomorrowText = createTextSpan('amanhã', 'tomorrow');
+
+  rightContainer.append(inputDate, addBtnDeleteTask());
+
+  updateDateIndicators(task.date, todayText, tomorrowText, rightContainer);
+
+  return rightContainer;
+}
+
+function createTextSpan(text, className) {
+  const span = document.createElement('span');
+  span.textContent = text;
+  span.classList.add(className);
+  return span;
+}
+
+function updateDateIndicators(date, todayText, tomorrowText, container) {
+  if (date === currentDate()) {
+    if (!container.contains(todayText)) {
+      container.insertBefore(todayText, container.lastChild);
+    }
+  } else if (container.contains(todayText)) {
+    container.removeChild(todayText);
+  }
+
+  if (date === tomorrowDate()) {
+    if (!container.contains(tomorrowText)) {
+      container.insertBefore(tomorrowText, container.lastChild);
+    }
+  } else if (container.contains(tomorrowText)) {
+    container.removeChild(tomorrowText);
+  }
+}
+
+function updateTaskDate(index, newDate, rightContainer) {
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   tasks[index].date = newDate;
   localStorage.setItem('tasks', JSON.stringify(tasks));
 
-  if (newDate === currentDate()) {
-    if (!taskElement.contains(todayText)) {
-      taskElement.insertBefore(todayText, taskElement.lastChild);
-    }
-  } else {
-    if (taskElement.contains(todayText)) {
-      taskElement.removeChild(todayText);
-    }
-  }
+  const todayText = rightContainer.querySelector('.today') || createTextSpan('hoje', 'today');
+  const tomorrowText = rightContainer.querySelector('.tomorrow') || createTextSpan('amanhã', 'tomorrow');
 
-  if (newDate === tomorrowDate()) {
-    if (!taskElement.contains(tomorrowText)) {
-      taskElement.insertBefore(tomorrowText, taskElement.lastChild);
-    }
-  } else {
-    if (taskElement.contains(tomorrowText)) {
-      taskElement.removeChild(tomorrowText);
-    }
-  }
+  updateDateIndicators(newDate, todayText, tomorrowText, rightContainer);
 }
 
-const newTask = (event) => {
+function newTask(event) {
   event.preventDefault();
 
   const input = document.querySelector('[data-form-input]');
-  const valueInput = input.value;
   const dateInput = document.querySelector('[data-form-date]');
 
-  if (valueInput === "") {
+  if (!input.value.trim()) {
     alert("Digite uma tarefa! 🚫");
     return;
   }
 
   const task = {
-    value: valueInput,
+    value: input.value,
     completed: false,
-    date: dateInput.value
+    date: dateInput.value,
+    notes: ""
   };
 
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
@@ -113,9 +147,7 @@ const newTask = (event) => {
 
   input.value = "";
   dateInput.value = "";
-};
-
-document.addEventListener('DOMContentLoaded', loadTasks);
+}
 
 const btnNewTask = document.querySelector('[data-form-button]');
 btnNewTask.addEventListener('click', newTask);

@@ -18,9 +18,10 @@ a {
     color: inherit;
 }
 
-input {
-    outline: none;
+input, textarea {
     border: none;
+    outline: none;
+    resize: none;
 }
 
 .app {
@@ -147,8 +148,8 @@ footer a:hover {
         padding: 1rem;
     }
 
-    .task-date {
-        margin: 0;
+    .task-notes {
+        height: 5.75rem;
     }
 
     .delete-button {
