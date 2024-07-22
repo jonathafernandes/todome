@@ -112,7 +112,7 @@ function updateDateIndicators(date, todayText, tomorrowText, container) {
   }
 }
 
-function updateTaskDate(index, newDate, rightContainer) {
+function updateTaskDate(index, newDate, taskElement, rightContainer) {
   const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
   tasks[index].date = newDate;
   localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -153,3 +153,4 @@ function newTask(event) {
 
 const btnNewTask = document.querySelector('[data-form-button]');
 btnNewTask.addEventListener('click', newTask);
+
