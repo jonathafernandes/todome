@@ -78,9 +78,9 @@ function createRightContainer(task, inputDate) {
   const todayText = createTextSpan('hoje', 'today');
   const tomorrowText = createTextSpan('amanhã', 'tomorrow');
 
-  rightContainer.append(inputDate, addBtnDeleteTask());
-
+  rightContainer.append(inputDate);
   updateDateIndicators(task.date, todayText, tomorrowText, rightContainer);
+  rightContainer.append(addBtnDeleteTask());
 
   return rightContainer;
 }
@@ -93,9 +93,11 @@ function createTextSpan(text, className) {
 }
 
 function updateDateIndicators(date, todayText, tomorrowText, container) {
+  const deleteButton = container.querySelector('button');
+
   if (date === currentDate()) {
     if (!container.contains(todayText)) {
-      container.insertBefore(todayText, container.lastChild);
+      container.insertBefore(todayText, deleteButton);
     }
   } else if (container.contains(todayText)) {
     container.removeChild(todayText);
@@ -103,7 +105,7 @@ function updateDateIndicators(date, todayText, tomorrowText, container) {
 
   if (date === tomorrowDate()) {
     if (!container.contains(tomorrowText)) {
-      container.insertBefore(tomorrowText, container.lastChild);
+      container.insertBefore(tomorrowText, deleteButton);
     }
   } else if (container.contains(tomorrowText)) {
     container.removeChild(tomorrowText);
@@ -151,5 +153,3 @@ function newTask(event) {
 
 const btnNewTask = document.querySelector('[data-form-button]');
 btnNewTask.addEventListener('click', newTask);
-
-export { addBtnCompleteTask, createTaskElement };
