@@ -18,10 +18,25 @@ a {
     color: inherit;
 }
 
-input, textarea {
+input,
+textarea {
     border: none;
     outline: none;
     resize: none;
+}
+
+input[type="date"] {
+    border: none;
+    font-family: monospace;
+    font-size: .8rem;
+    color: #333;
+    background-color: #fff;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
 }
 
 .app {

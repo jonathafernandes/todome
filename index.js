@@ -127,7 +127,6 @@ function newTask(event) {
   event.preventDefault();
 
   const input = document.querySelector('[data-form-input]');
-  const dateInput = document.querySelector('[data-form-date]');
 
   if (!input.value.trim()) {
     alert("Digite uma tarefa! 🚫");
@@ -137,7 +136,7 @@ function newTask(event) {
   const task = {
     value: input.value,
     completed: false,
-    date: dateInput.value,
+    date: "",
     notes: ""
   };
 
@@ -148,7 +147,6 @@ function newTask(event) {
   createTaskElement(task, tasks.length - 1);
 
   input.value = "";
-  dateInput.value = "";
 }
 
 const btnNewTask = document.querySelector('[data-form-button]');
